@@ -9,7 +9,7 @@ class Test extends Model
 {
     use HasFactory;
 
-    public function examination()
+    public function examinations()
     {
         return $this->hasMany(Examination::class);
     }

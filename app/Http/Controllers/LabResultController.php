@@ -3,15 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\LabResult;
+use App\Traits\ApiResponser;
 use Illuminate\Http\Request;
 
 class LabResultController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    use ApiResponser;
+
     public function index()
     {
         //

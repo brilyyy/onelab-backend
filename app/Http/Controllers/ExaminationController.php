@@ -43,7 +43,7 @@ class ExaminationController extends Controller
         $examination->harga = $request->harga;
         $examination->nilai_rujukan = $request->nilai_rujukan;
         if ($examination->save()) {
-            return $this->success($examination, 'Examination data created successfully');
+            return $this->success($examination, 'Examination data updated successfully');
         }
     }
 

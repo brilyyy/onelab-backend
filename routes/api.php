@@ -23,6 +23,7 @@ Route::middleware(['prefix' => 'api'])->group(function () {
     Route::post('/auth/login', [AuthController::class, 'login']);
     Route::group(['middleware' => ['auth:api']], function () {
         Route::post('/auth/logout', [AuthController::class, 'logout']);
+        Route::get('/auth/me', [AuthController::class, 'me']);
 
         // Patient Route
         Route::post('/patients', [PatientController::class, 'store']);

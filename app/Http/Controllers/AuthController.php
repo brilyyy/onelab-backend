@@ -59,4 +59,11 @@ class AuthController extends Controller
             }
         }
     }
+
+    public function me()
+    {
+        $user = Auth::user();
+
+        return $this->success($user, 'User data retreived successfully');
+    }
 }

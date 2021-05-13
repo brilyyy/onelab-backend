@@ -28,7 +28,7 @@ class TestController extends Controller
 
     public function show($id)
     {
-        $test = Test::find($id)->with('examinations')->get();
+        $test = Test::where('id', $id)->with('examinations')->get();
 
         return $this->success($test, 'Test data retreived successfully');
     }

@@ -12,72 +12,47 @@ class LabResultController extends Controller
 
     public function index()
     {
-        //
+        $labResults = LabResult::all();
+        return $this->success($labResults, 'Lab Result data retreived successfully');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $labResult = new LabResult();
+        $labResult->patient_id = $request->patient_id;
+        $labResult->examination_id = $request->examination_id;
+        $labResult->test_id = $request->test_id;
+        $labResult->catatan = $request->catatan;
+        $labResult->hasil = $request->hasil;
+
+        if ($labResult->save()) {
+            return $this->success($labResult, 'Lab Result data stored succesfully', 201);
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\LabResult  $labResult
-     * @return \Illuminate\Http\Response
-     */
-    public function show(LabResult $labResult)
+    public function show($id)
     {
-        //
+        $labResult = LabResult::where('id', $id)->with('patient')->with('examination')->with('test')->get();
+        return $this->success($labResult, 'Lab Result data retreived successfully');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\LabResult  $labResult
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(LabResult $labResult)
+    public function update(Request $request, $id)
     {
-        //
+        $labResult = LabResult::find($id);
+        $labResult->patient_id = $request->patient_id;
+        $labResult->examination_id = $request->examination_id;
+        $labResult->test_id = $request->test_id;
+        $labResult->catatan = $request->catatan;
+        $labResult->hasil = $request->hasil;
+        if ($labResult->save()) {
+            return $this->success($labResult, 'Lab Result data updated succesfully');
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\LabResult  $labResult
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, LabResult $labResult)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\LabResult  $labResult
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(LabResult $labResult)
-    {
-        //
+        $labResult = LabResult::find($id);
+        $labResult->delete();
+        return $this->success($labResult, 'Lab Result data deleted successfully');
     }
 }

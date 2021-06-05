@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ExaminationController;
+use App\Http\Controllers\LabResultController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\TestController;
 use Illuminate\Http\Request;
@@ -45,5 +46,12 @@ Route::middleware(['prefix' => 'api'])->group(function () {
         Route::get('/examinations/{id}', [ExaminationController::class, 'show']);
         Route::put('/examinations/{id}', [ExaminationController::class, 'update']);
         Route::delete('/examinations/{id}', [ExaminationController::class, 'destroy']);
+
+        // LabResult Route
+        Route::post('/labresults', [LabResultController::class, 'store']);
+        Route::get('/labresults', [LabResultController::class, 'index']);
+        Route::get('/labresults/{id}', [LabResultController::class, 'show']);
+        Route::put('/labresults/{id}', [LabResultController::class, 'update']);
+        Route::delete('/labresults/{id}', [LabResultController::class, 'destroy']);
     });
 });

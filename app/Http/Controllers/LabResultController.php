@@ -22,6 +22,10 @@ class LabResultController extends Controller
         $labResult->patient_id = $request->patient_id;
         $labResult->examination_id = $request->examination_id;
         $labResult->test_id = $request->test_id;
+        $labResult->laborat_id = $request->laborat_id;
+        $labResult->sample_id = $request->sample_id;
+        $labResult->no_spesimen = $request->no_spesimen;
+        $labResult->jam_pengambilan_spesimen = $request->jam_pengambilan_spesimen;
         $labResult->catatan = $request->catatan;
         $labResult->hasil = $request->hasil;
 
@@ -32,7 +36,7 @@ class LabResultController extends Controller
 
     public function show($id)
     {
-        $labResult = LabResult::where('id', $id)->with('patient')->with('examination')->with('test')->get();
+        $labResult = LabResult::where('id', $id)->with('patient')->with('test')->with('examination')->with('laborat')->with('sample')->get();
         return $this->success($labResult, 'Lab Result data retreived successfully');
     }
 
@@ -42,6 +46,10 @@ class LabResultController extends Controller
         $labResult->patient_id = $request->patient_id;
         $labResult->examination_id = $request->examination_id;
         $labResult->test_id = $request->test_id;
+        $labResult->test_id = $request->laborat_id;
+        $labResult->test_id = $request->sample_id;
+        $labResult->no_spesimen = $request->no_spesimen;
+        $labResult->jam_pengambilan_spesimen = $request->jam_pengambilan_spesimen;
         $labResult->catatan = $request->catatan;
         $labResult->hasil = $request->hasil;
         if ($labResult->save()) {

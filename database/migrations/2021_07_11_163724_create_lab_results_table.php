@@ -18,6 +18,10 @@ class CreateLabResultsTable extends Migration
             $table->unsignedBigInteger('patient_id');
             $table->unsignedBigInteger('examination_id');
             $table->unsignedBigInteger('test_id');
+            $table->unsignedBigInteger('laborat_id');
+            $table->unsignedBigInteger('sample_id');
+            $table->string('no_spesimen');
+            $table->string('jam_pengambilan_spesimen');
             $table->string('hasil');
             $table->string('catatan');
             $table->timestamps();
@@ -25,6 +29,8 @@ class CreateLabResultsTable extends Migration
             $table->foreign('patient_id')->references('id')->on('patients');
             $table->foreign('examination_id')->references('id')->on('examinations');
             $table->foreign('test_id')->references('id')->on('tests');
+            $table->foreign('laborat_id')->references('id')->on('laborats');
+            $table->foreign('sample_id')->references('id')->on('samples');
         });
     }
 

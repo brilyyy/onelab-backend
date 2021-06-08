@@ -22,4 +22,12 @@ class LabResult extends Model
     {
         return $this->belongsTo(Test::class);
     }
+    public function laborat()
+    {
+        return $this->belongsTo(Laborat::class);
+    }
+    public function sample()
+    {
+        return $this->belongsTo(Sample::class);
+    }
 }

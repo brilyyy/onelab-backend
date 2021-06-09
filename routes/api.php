@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ExaminationController;
+use App\Http\Controllers\LaboratController;
 use App\Http\Controllers\LabResultController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\SampleController;
 use App\Http\Controllers\TestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +34,7 @@ Route::middleware(['prefix' => 'api'])->group(function () {
         Route::get('/patients/{id}', [PatientController::class, 'show']);
         Route::put('/patients/{id}', [PatientController::class, 'update']);
         Route::delete('/patients/{id}', [PatientController::class, 'destroy']);
+        Route::get('/patients/rm/{rm}', [PatientController::class, 'getbyRm']);
 
         // Test Route
         Route::post('/tests', [TestController::class, 'store']);
@@ -53,5 +56,11 @@ Route::middleware(['prefix' => 'api'])->group(function () {
         Route::get('/labresults/{id}', [LabResultController::class, 'show']);
         Route::put('/labresults/{id}', [LabResultController::class, 'update']);
         Route::delete('/labresults/{id}', [LabResultController::class, 'destroy']);
+
+        // Laboran Route
+        Route::get('/laborans', [LaboratController::class, 'index']);
+
+        // Sample Route
+        Route::get('/samples', [SampleController::class, 'index']);
     });
 });

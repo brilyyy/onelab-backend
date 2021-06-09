@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sample;
+use App\Traits\ApiResponser;
 use Illuminate\Http\Request;
 
 class SampleController extends Controller
 {
+    use ApiResponser;
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +16,8 @@ class SampleController extends Controller
      */
     public function index()
     {
-        //
+        $samples = Sample::all();
+        return $this->success($samples, 'Sample Data Retreived Successfully');
     }
 
     /**

@@ -77,4 +77,10 @@ class PatientController extends Controller
 
         return $this->success($patient, 'Patient Data Deleted Successfully', 200);
     }
+
+    public function getbyRm($rm)
+    {
+        $patient = Patient::where('no_rm', $rm)->get();
+        return $this->success($patient, 'Patient data retreived successfully');
+    }
 }

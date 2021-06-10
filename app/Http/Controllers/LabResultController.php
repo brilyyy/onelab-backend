@@ -63,7 +63,7 @@ class LabResultController extends Controller
 
     public function getLatest()
     {
-        $labResult = LabResult::orderBy('id', 'desc')->get();
+        $labResult = LabResult::all()->last();
         return $this->success($labResult, 'Lab Result data retreived successfully');
     }
 }

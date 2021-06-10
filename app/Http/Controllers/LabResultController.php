@@ -28,6 +28,8 @@ class LabResultController extends Controller
         $labResult->jam_pengambilan_spesimen = $request->jam_pengambilan_spesimen;
         $labResult->catatan = $request->catatan;
         $labResult->hasil = $request->hasil;
+        $labResult->tanggal_pengambilan_spesimen = $request->tanggal_pengambilan_spesimen;
+        $labResult->total_harga = $request->total_harga;
 
         if ($labResult->save()) {
             return $this->success($labResult, 'Lab Result data stored succesfully', 201);
@@ -52,6 +54,8 @@ class LabResultController extends Controller
         $labResult->jam_pengambilan_spesimen = $request->jam_pengambilan_spesimen;
         $labResult->catatan = $request->catatan;
         $labResult->hasil = $request->hasil;
+        $labResult->tanggal_pengambilan_spesimen = $request->tanggal_pengambilan_spesimen;
+        $labResult->total_harga = $request->total_harga;
         if ($labResult->save()) {
             return $this->success($labResult, 'Lab Result data updated succesfully');
         }
@@ -62,5 +66,11 @@ class LabResultController extends Controller
         $labResult = LabResult::find($id);
         $labResult->delete();
         return $this->success($labResult, 'Lab Result data deleted successfully');
+    }
+
+    public function getLatest()
+    {
+        $labResult = LabResult::orderBy('id', 'desc')->first()->with('patient')->with('test')->with('examination')->with('laborat')->with('sample')->get();
+        return $this->success($labResult, 'Lab Result data retreived successfully');
     }
 }

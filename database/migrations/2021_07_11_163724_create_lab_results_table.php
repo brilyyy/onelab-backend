@@ -21,9 +21,11 @@ class CreateLabResultsTable extends Migration
             $table->unsignedBigInteger('laborat_id');
             $table->unsignedBigInteger('sample_id');
             $table->string('no_spesimen');
+            $table->string('tanggal_pengambilan_spesimen');
             $table->string('jam_pengambilan_spesimen');
             $table->string('hasil');
             $table->string('catatan');
+            $table->string('total_harga');
             $table->timestamps();
 
             $table->foreign('patient_id')->references('id')->on('patients');

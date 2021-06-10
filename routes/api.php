@@ -53,6 +53,7 @@ Route::middleware(['prefix' => 'api'])->group(function () {
         // LabResult Route
         Route::post('/labresults', [LabResultController::class, 'store']);
         Route::get('/labresults', [LabResultController::class, 'index']);
+        Route::get('/labresults/latest', [LabResultController::class, 'getLatest']);
         Route::get('/labresults/{id}', [LabResultController::class, 'show']);
         Route::put('/labresults/{id}', [LabResultController::class, 'update']);
         Route::delete('/labresults/{id}', [LabResultController::class, 'destroy']);

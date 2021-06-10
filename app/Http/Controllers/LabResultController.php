@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\LabResult;
 use App\Traits\ApiResponser;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class LabResultController extends Controller
@@ -20,16 +21,12 @@ class LabResultController extends Controller
     {
         $labResult = new LabResult();
         $labResult->patient_id = $request->patient_id;
-        $labResult->examination_id = $request->examination_id;
-        $labResult->test_id = $request->test_id;
         $labResult->laborat_id = $request->laborat_id;
         $labResult->sample_id = $request->sample_id;
         $labResult->no_spesimen = $request->no_spesimen;
         $labResult->jam_pengambilan_spesimen = $request->jam_pengambilan_spesimen;
-        $labResult->catatan = $request->catatan;
-        $labResult->hasil = $request->hasil;
         $labResult->tanggal_pengambilan_spesimen = $request->tanggal_pengambilan_spesimen;
-        $labResult->total_harga = $request->total_harga;
+        $labResult->tanggal_transaksi = $request->tanggal_transaksi;
 
         if ($labResult->save()) {
             return $this->success($labResult, 'Lab Result data stored succesfully', 201);
@@ -38,7 +35,7 @@ class LabResultController extends Controller
 
     public function show($id)
     {
-        $labResult = LabResult::where('id', $id)->with('patient')->with('test')->with('examination')->with('laborat')->with('sample')->get();
+        $labResult = LabResult::where('id', $id)->with('patient')->with('laborat')->with('sample')->with('testresults.examination')->get();
         return $this->success($labResult, 'Lab Result data retreived successfully');
     }
 
@@ -46,16 +43,12 @@ class LabResultController extends Controller
     {
         $labResult = LabResult::find($id);
         $labResult->patient_id = $request->patient_id;
-        $labResult->examination_id = $request->examination_id;
-        $labResult->test_id = $request->test_id;
-        $labResult->test_id = $request->laborat_id;
-        $labResult->test_id = $request->sample_id;
+        $labResult->laborat_id = $request->laborat_id;
+        $labResult->sample_id = $request->sample_id;
         $labResult->no_spesimen = $request->no_spesimen;
         $labResult->jam_pengambilan_spesimen = $request->jam_pengambilan_spesimen;
-        $labResult->catatan = $request->catatan;
-        $labResult->hasil = $request->hasil;
         $labResult->tanggal_pengambilan_spesimen = $request->tanggal_pengambilan_spesimen;
-        $labResult->total_harga = $request->total_harga;
+        $labResult->tanggal_transaksi = $request->tanggal_transaksi;
         if ($labResult->save()) {
             return $this->success($labResult, 'Lab Result data updated succesfully');
         }
@@ -70,7 +63,7 @@ class LabResultController extends Controller
 
     public function getLatest()
     {
-        $labResult = LabResult::orderBy('id', 'desc')->first()->with('patient')->with('test')->with('examination')->with('laborat')->with('sample')->get();
+        $labResult = LabResult::orderBy('id', 'desc')->get();
         return $this->success($labResult, 'Lab Result data retreived successfully');
     }
 }

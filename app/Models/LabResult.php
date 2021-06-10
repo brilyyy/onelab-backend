@@ -9,18 +9,13 @@ class LabResult extends Model
 {
     use HasFactory;
 
-    public function examination()
+    public function testresults()
     {
-        return $this->belongsTo(Examination::class);
+        return $this->hasMany(TestResult::class);
     }
-
     public function patient()
     {
         return $this->belongsTo(Patient::class);
-    }
-    public function test()
-    {
-        return $this->belongsTo(Test::class);
     }
     public function laborat()
     {

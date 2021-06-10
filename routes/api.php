@@ -7,6 +7,7 @@ use App\Http\Controllers\LabResultController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\SampleController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\TestResultController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -63,5 +64,9 @@ Route::middleware(['prefix' => 'api'])->group(function () {
 
         // Sample Route
         Route::get('/samples', [SampleController::class, 'index']);
+
+        // Test Result Route
+        Route::post('/testresult', [TestResultController::class, 'store']);
+        Route::get('/testresult/{id}', [TestResultController::class, 'show']);
     });
 });

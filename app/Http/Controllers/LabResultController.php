@@ -35,7 +35,7 @@ class LabResultController extends Controller
 
     public function show($id)
     {
-        $labResult = LabResult::where('id', $id)->with('patient')->with('laborat')->with('sample')->with('testresults.examination')->get();
+        $labResult = LabResult::where('id', $id)->with('patient')->with('laborat')->with('sample')->with('testresults.examination')->with('payment.examination')->get();
         return $this->success($labResult, 'Lab Result data retreived successfully');
     }
 

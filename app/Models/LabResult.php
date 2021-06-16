@@ -25,4 +25,8 @@ class LabResult extends Model
     {
         return $this->belongsTo(Sample::class);
     }
+    public function payment()
+    {
+        return $this->hasMany(Payment::class);
+    }
 }

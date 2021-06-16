@@ -5,6 +5,7 @@ use App\Http\Controllers\ExaminationController;
 use App\Http\Controllers\LaboratController;
 use App\Http\Controllers\LabResultController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SampleController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\TestResultController;
@@ -68,5 +69,9 @@ Route::middleware(['prefix' => 'api'])->group(function () {
         // Test Result Route
         Route::post('/testresult', [TestResultController::class, 'store']);
         Route::get('/testresult/{id}', [TestResultController::class, 'show']);
+        Route::put('/testresult/{id}', [TestResultController::class, 'update']);
+
+        // Payment Route
+        Route::post('/payment', [PaymentController::class, 'store']);
     });
 });

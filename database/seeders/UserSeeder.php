@@ -21,9 +21,14 @@ class UserSeeder extends Seeder
             'password' => Hash::make('inilaboran'),
         ]);
         User::factory()->create([
-            'name' => 'Kasir',
-            'email' => 'kasir@onelab.com',
-            'password' => Hash::make('inikasir'),
+            'name' => 'Registrasi',
+            'email' => 'registrasi@onelab.com',
+            'password' => Hash::make('iniregistrasi'),
+        ]);
+        User::factory()->create([
+            'name' => 'Manager',
+            'email' => 'manager@onelab.com',
+            'password' => Hash::make('inimanager'),
         ]);
     }
 }

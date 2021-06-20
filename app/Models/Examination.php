@@ -13,4 +13,9 @@ class Examination extends Model
     {
         return $this->belongsTo(Test::class);
     }
+
+    public function examresults()
+    {
+        return $this->hasMany(ExamResult::class);
+    }
 }

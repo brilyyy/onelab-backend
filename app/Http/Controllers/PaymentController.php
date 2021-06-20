@@ -13,7 +13,7 @@ class PaymentController extends Controller
     public function store(Request $request)
     {
         $payment = new Payment();
-        $payment->lab_result_id = $request->lab_result_id;
+        $payment->patient_id = $request->patient_id;
         $payment->examination_id = $request->examination_id;
         if ($payment->save()) {
             return $this->success($payment, 'payment stored', 201);

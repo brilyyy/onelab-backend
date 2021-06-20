@@ -16,17 +16,16 @@ class CreateLabResultsTable extends Migration
         Schema::create('lab_results', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('patient_id');
-            $table->unsignedBigInteger('laborat_id');
-            $table->unsignedBigInteger('sample_id');
-            $table->string('no_spesimen');
-            $table->string('tanggal_pengambilan_spesimen');
-            $table->string('jam_pengambilan_spesimen');
-            $table->string('tanggal_transaksi');
+            $table->unsignedBigInteger('laborat_id')->nullable();
+            $table->string('no_spesimen')->nullable();
+            $table->string('tanggal_pengambilan_spesimen')->nullable();
+            $table->string('jam_pengambilan_spesimen')->nullable();
+            $table->string('tanggal_transaksi')->nullable();
+            $table->string('status');
             $table->timestamps();
 
             $table->foreign('patient_id')->references('id')->on('patients');
             $table->foreign('laborat_id')->references('id')->on('laborats');
-            $table->foreign('sample_id')->references('id')->on('samples');
         });
     }
 

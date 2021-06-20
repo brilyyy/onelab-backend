@@ -12,7 +12,7 @@ class ExaminationController extends Controller
 
     public function index()
     {
-        $examinations = Examination::all();
+        $examinations = Examination::with('examresults')->get();
         return $this->success($examinations, 'Examinations data retreived successfully');
     }
 

@@ -13,8 +13,14 @@ class TestResult extends Model
     {
         return $this->belongsTo(Test::class);
     }
-    public function examination()
+
+    public function examresults()
     {
-        return $this->belongsTo(Examination::class);
+        return $this->belongsTo(ExamResult::class, 'exam_result_id');
+    }
+
+    public function sample()
+    {
+        return $this->belongsTo(Sample::class);
     }
 }

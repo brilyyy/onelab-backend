@@ -15,12 +15,12 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('lab_result_id');
+            $table->unsignedBigInteger('patient_id');
             $table->unsignedBigInteger('examination_id');
             $table->timestamps();
 
             $table->foreign('examination_id')->references('id')->on('examinations');
-            $table->foreign('lab_result_id')->references('id')->on('lab_results');
+            $table->foreign('patient_id')->references('id')->on('patients');
         });
     }
 

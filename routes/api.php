@@ -37,6 +37,7 @@ Route::middleware(['prefix' => 'api'])->group(function () {
         Route::put('/patients/{id}', [PatientController::class, 'update']);
         Route::delete('/patients/{id}', [PatientController::class, 'destroy']);
         Route::get('/patients/rm/{rm}', [PatientController::class, 'getbyRm']);
+        Route::get('/patient/latest', [PatientController::class, 'getLatest']);
 
         // Test Route
         Route::post('/tests', [TestController::class, 'store']);
@@ -55,10 +56,13 @@ Route::middleware(['prefix' => 'api'])->group(function () {
         // LabResult Route
         Route::post('/labresults', [LabResultController::class, 'store']);
         Route::get('/labresults', [LabResultController::class, 'index']);
+        Route::get('/labresults/all', [LabResultController::class, 'getAllData']);
         Route::get('/labresults/latest', [LabResultController::class, 'getLatest']);
         Route::get('/labresults/{id}', [LabResultController::class, 'show']);
         Route::put('/labresults/{id}', [LabResultController::class, 'update']);
         Route::delete('/labresults/{id}', [LabResultController::class, 'destroy']);
+        Route::get('/labresults/patient/{id}', [LabResultController::class, 'getByPatientId']);
+        Route::get('/labresults/paid', [LabResultController::class, 'getDoneStatus']);
 
         // Laboran Route
         Route::get('/laborans', [LaboratController::class, 'index']);

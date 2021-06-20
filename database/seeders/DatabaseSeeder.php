@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ExamResult;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,5 +19,6 @@ class DatabaseSeeder extends Seeder
         $this->call(LaboratSeeder::class);
         $this->call(SampleSeeder::class);
         $this->call(UserSeeder::class);
+        $this->call(ExamResultSeeder::class);
     }
 }

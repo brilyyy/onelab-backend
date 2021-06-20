@@ -12,8 +12,9 @@ class TestResultController extends Controller
     public function store(Request $request)
     {
         $testResult = new TestResult();
-        $testResult->examination_id = $request->examination_id;
+        $testResult->exam_result_id = $request->exam_result_id;
         $testResult->test_id = $request->test_id;
+        $testResult->sample_id = $request->sample_id;
         $testResult->lab_result_id = $request->lab_result_id;
         $testResult->hasil = $request->hasil;
         $testResult->catatan = $request->catatan;
@@ -25,8 +26,9 @@ class TestResultController extends Controller
     public function update(Request $request, $id)
     {
         $testResult = TestResult::find($id);
-        $testResult->examination_id = $request->examination_id;
+        $testResult->exam_result_id = $request->exam_result_id;
         $testResult->test_id = $request->test_id;
+        $testResult->sample_id = $request->sample_id;
         $testResult->lab_result_id = $request->lab_result_id;
         $testResult->hasil = $request->hasil;
         $testResult->catatan = $request->catatan;

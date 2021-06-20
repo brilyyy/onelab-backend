@@ -22,9 +22,6 @@ class CreatePatientsTable extends Migration
             $table->string('tanggal_lahir');
             $table->string('jenis_kelamin');
             $table->string('alamat');
-            $table->string('kecamatan');
-            $table->string('kabupaten');
-            $table->string('provinsi')->nullable();
             $table->string('no_telp');
             $table->string('email')->nullable();
             $table->string('nama_wali')->nullable();

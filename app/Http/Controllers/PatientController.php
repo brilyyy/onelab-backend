@@ -18,7 +18,7 @@ class PatientController extends Controller
 
     public function show($id)
     {
-        $patient = Patient::find($id);
+        $patient = Patient::where('id', $id)->with('payment.examination')->get();
         return $this->success($patient, 'Patient Data Retreived Successfully');
     }
 
@@ -32,9 +32,6 @@ class PatientController extends Controller
         $patient->tanggal_lahir = $request->tanggal_lahir;
         $patient->jenis_kelamin = $request->jenis_kelamin;
         $patient->alamat = $request->alamat;
-        $patient->kecamatan = $request->kecamatan;
-        $patient->kabupaten = $request->kabupaten;
-        $patient->provinsi = $request->provinsi;
         $patient->no_telp = $request->no_telp;
         $patient->email = $request->email;
         $patient->nama_wali = $request->nama_wali;
@@ -56,9 +53,6 @@ class PatientController extends Controller
         $patient->tanggal_lahir = $request->get('tanggal_lahir');
         $patient->jenis_kelamin = $request->get('jenis_kelamin');
         $patient->alamat = $request->get('alamat');
-        $patient->kecamatan = $request->get('kecamatan');
-        $patient->kabupaten = $request->get('kabupaten');
-        $patient->provinsi = $request->get('provinsi');
         $patient->no_telp = $request->get('no_telp');
         $patient->email = $request->get('email');
         $patient->nama_wali = $request->get('nama_wali');
@@ -81,6 +75,12 @@ class PatientController extends Controller
     public function getbyRm($rm)
     {
         $patient = Patient::where('no_rm', $rm)->get();
+        return $this->success($patient, 'Patient data retreived successfully');
+    }
+
+    public function getLatest()
+    {
+        $patient = Patient::all()->last();
         return $this->success($patient, 'Patient data retreived successfully');
     }
 }
